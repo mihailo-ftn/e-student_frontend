@@ -1,0 +1,9 @@
+mutation CreatSubject($input: SubjectInput!) {
+  createSubject(input: $input) {
+    subjectName
+    espp
+    modulID
+    professorID
+    type
+  }
+}

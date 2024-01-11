@@ -1,0 +1,6 @@
+mutation CreateClass($input:ClassInput!){
+  createClass(input: $input) {
+    id
+    classLabel
+  }
+}

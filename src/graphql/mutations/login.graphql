@@ -1,0 +1,5 @@
+mutation Login($brind: String!,$password: String!){
+  login(brind: $brind, password: $password) {
+    id
+  }
+}
