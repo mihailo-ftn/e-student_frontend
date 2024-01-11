@@ -1,0 +1,15 @@
+---STUDENT ERRORS---
+Error with input values ER100
+Average grade error ER103
+ESPP sum error ER104
+Wrong Credentials ER001
+No passed exams ER105
+Not Authenticated ER002
+---MODULE ERRORS---
+Module does not exist ER201
+---CLASS ERRORS---
+Class does not exist ER301
+---EXAM ERRORS---
+Exam does not exist ER401
+---SUBJECT ERROR---
+Subjects do not exist ER501
