@@ -1,0 +1,8 @@
+query StudentsSubjects{
+  studentsSubjects{
+    id
+    subjectName
+    espp
+    type
+  }
+}

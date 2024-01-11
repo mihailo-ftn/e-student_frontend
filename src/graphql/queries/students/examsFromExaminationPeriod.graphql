@@ -1,0 +1,26 @@
+query ExamsFromExaminationPeriod {
+  examsFromExaminationPeriod {
+    id
+    name
+    beginningDate
+    endDate
+    exams {
+      id
+      date
+      examRecord {
+        id
+        studentID
+        singed
+      }
+      subject {
+        subjectName
+        espp
+        type
+        professor {
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+query StudentsWhoSingedExam($subjectID: String!) {
+  studentsWhoSingedExam(subjectID: $subjectID) {
+    id
+    exam {
+      subject {
+        subjectName
+      }
+    }
+    student {
+      id
+      firstName
+      lastName
+      brind
+    }
+  }
+}

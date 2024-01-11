@@ -1,0 +1,18 @@
+query ExamsFromCurrentExamPeriod{
+  examsFromCurrentExamPeriod{
+    date
+    subject{
+      id
+      subjectName
+      espp
+      type
+    }
+    examRecord{
+      student{
+        firstName
+        lastName
+        brind
+      }
+    }
+  }
+}

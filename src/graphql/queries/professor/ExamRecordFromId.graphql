@@ -1,0 +1,16 @@
+query ExamRecordFromId($id:String!){
+  ExamRecordFromId(id: $id){
+    id
+    student{
+      firstName
+      lastName
+      brind
+    }
+    exam{
+      subject{
+        subjectName
+      }
+    }
+
+  }
+}

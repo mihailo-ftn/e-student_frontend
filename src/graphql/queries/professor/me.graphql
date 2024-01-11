@@ -1,0 +1,11 @@
+query MeProfessor{
+  meProfessor{
+    id
+    firstName
+    lastName
+    email
+    password
+    jmbg
+    role
+  }
+}

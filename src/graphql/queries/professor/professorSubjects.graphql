@@ -1,0 +1,13 @@
+query ProfessorSubjects {
+  professorSubjects {
+    id
+    subjectName
+    espp
+    modul {
+      moduleName
+      moduleCode
+    }
+    modulID
+    type
+  }
+}

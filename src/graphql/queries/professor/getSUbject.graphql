@@ -1,0 +1,6 @@
+query getSubject($id: String!){
+  getSubject(id: $id) {
+    id
+    subjectName
+}
+}
