@@ -1,0 +1,3 @@
+mutation RegisterPassedExam($id:String!,$points:Float!){
+  registerPassedExam(points: $points, id:$id )
+}

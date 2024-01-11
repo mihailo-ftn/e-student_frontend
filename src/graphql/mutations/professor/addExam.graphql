@@ -1,0 +1,7 @@
+mutation AddExam($input: ExamInput!) {
+  addExam(input:$input) {
+    id
+    date
+    
+  }
+}

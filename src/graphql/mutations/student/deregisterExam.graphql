@@ -1,0 +1,3 @@
+mutation Deregister($examID: String!){
+  deregisterExam(examID: $examID)
+}

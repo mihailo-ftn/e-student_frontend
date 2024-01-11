@@ -1,0 +1,14 @@
+query CurrentExPeriod{
+  currentExPeriod {
+    id
+    name
+    beginningDate
+    endDate
+    modulID
+    active
+        exams{
+      subject{
+subjectName}
+    }
+  }
+}

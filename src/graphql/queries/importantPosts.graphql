@@ -1,0 +1,14 @@
+query Important{
+  getImportant {
+    id
+    creationDate
+    creator {
+      id
+      firstName
+      lastName
+    }
+    creatorID
+    text
+    important
+  }
+}

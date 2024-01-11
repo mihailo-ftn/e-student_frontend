@@ -1,0 +1,3 @@
+mutation RegisterExam($examID: String!){
+  registerExam(examID: $examID)
+}

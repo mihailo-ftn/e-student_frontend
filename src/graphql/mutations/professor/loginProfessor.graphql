@@ -1,0 +1,11 @@
+mutation LoginProfessor($password: String!,$email: String!){
+  loginProfessor(password: $password, email: $email){
+    id
+    firstName
+    lastName
+    email
+    password
+    jmbg
+    role
+  }
+}
