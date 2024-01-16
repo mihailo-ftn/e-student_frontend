@@ -9,9 +9,7 @@ const Home = ({}) => {
   return (
     <>
       <AdminNavigationBar />
-      <h1 className="text-center text-3xl font-bold text-gray-600 mt-10">
-        АДМИН ПАНЕЛ
-      </h1>
+      <h1 className="text-center text-3xl font-bold text-gray-600 mt-10">АДМИН ПАНЕЛ</h1>
       <div className="flex justify-center items-center">
         <div className="grid content-center grid-cols-1 gap-4 mt-4 p-5">
           <div>
@@ -55,12 +53,15 @@ const Home = ({}) => {
             </button>
           </div>
           <div>
-            <button className="bg-gray-800 w-72 text-white rounded-md p-3">
-              Направи професора
-            </button>
+            <button className="bg-gray-800 w-72 text-white rounded-md p-3">Направи професора</button>
           </div>
           <div>
-            <button className="bg-gray-800 w-72 text-white rounded-md p-3">
+            <button
+              className="bg-gray-800 w-72 text-white rounded-md p-3"
+              onClick={() => {
+                router.push("/admin/create-examination-period");
+              }}
+            >
               Направи испитни рок
             </button>
           </div>

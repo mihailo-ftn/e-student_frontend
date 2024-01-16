@@ -1,0 +1,8 @@
+mutation CreateExaminationPeriod($input: ExaminationPeriodInput!) {
+  createExaminationPeriod(input: $input) {
+    name
+    beginningDate
+    endDate
+    modulID
+  }
+}

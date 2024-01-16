@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import { withUrqlClient } from "next-urql";
 import router from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { AdminNavigationBar } from "../../components/admin/NavigationBar";
 import { InputField } from "../../components/InputField";
 import {
@@ -12,11 +12,16 @@ import {
 } from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import DropdownField from "../../components/DropdownField";
+import SuccessModal from "../../components/SuccessModal";
+import ErrorModal from "../../components/ErrorModal";
+import { submitForm } from "../../utils/submitForm";
 
 const CreateSubject = ({}) => {
   const [, createSubject] = useCreatSubjectMutation();
   const [{ data: profData }] = useGetAllProfessorsQuery();
   const [{ data: modulData }] = useGetAllModulsQuery();
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const professorOptions =
     profData && profData.getAllProfessors
@@ -31,6 +36,12 @@ const CreateSubject = ({}) => {
   return (
     <>
       <AdminNavigationBar />
+      <SuccessModal isOpen={showSuccess} onClose={() => router.back()}>
+        <h2>Успешно креирано.</h2>
+      </SuccessModal>
+      <ErrorModal isOpen={!!error} onClose={() => setError("")}>
+        <h2>{error}</h2>
+      </ErrorModal>
       <Formik
         initialValues={{
           subjectName: "",
@@ -39,21 +50,17 @@ const CreateSubject = ({}) => {
           type: "REQUIRED",
           modulID: "",
         }}
-        onSubmit={async (values) => {
-          console.log(values);
-          const response = await createSubject({
-            input: { ...values, type: values.type as SubjectType, espp: +values.espp },
-          });
-          if (response.error?.message.includes("ER201")) {
-            console.log("Module you entered does nost exist");
-          } else if (response.error?.message.includes("ER100")) {
-            console.log("Check input values");
-          } else if (response.error?.message.includes("ER301")) {
-            console.log("Class you entered does nost exist");
-          } else if (response.data) {
-            console.log("Success");
-          }
-        }}
+        onSubmit={async (values) =>
+          submitForm(
+            values,
+            () =>
+              createSubject({
+                input: { ...values, type: values.type as SubjectType, espp: +values.espp },
+              }),
+            setError,
+            setShowSuccess
+          )
+        }
       >
         {({ isSubmitting }) => (
           <Form className="mt-3 space-y-6" action="#" method="POST">

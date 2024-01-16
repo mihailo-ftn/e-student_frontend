@@ -387,6 +387,13 @@ export type CreateClassMutationVariables = Exact<{
 
 export type CreateClassMutation = { __typename?: 'Mutation', createClass: { __typename?: 'Class', id: string, classLabel: number } };
 
+export type CreateExaminationPeriodMutationVariables = Exact<{
+  input: ExaminationPeriodInput;
+}>;
+
+
+export type CreateExaminationPeriodMutation = { __typename?: 'Mutation', createExaminationPeriod: { __typename?: 'ExaminationPeriod', name: string, beginningDate: any, endDate: any, modulID?: string | null | undefined } };
+
 export type CreateModulMutationVariables = Exact<{
   input: ModulInput;
 }>;
@@ -600,6 +607,20 @@ export const CreateClassDocument = gql`
 
 export function useCreateClassMutation() {
   return Urql.useMutation<CreateClassMutation, CreateClassMutationVariables>(CreateClassDocument);
+};
+export const CreateExaminationPeriodDocument = gql`
+    mutation CreateExaminationPeriod($input: ExaminationPeriodInput!) {
+  createExaminationPeriod(input: $input) {
+    name
+    beginningDate
+    endDate
+    modulID
+  }
+}
+    `;
+
+export function useCreateExaminationPeriodMutation() {
+  return Urql.useMutation<CreateExaminationPeriodMutation, CreateExaminationPeriodMutationVariables>(CreateExaminationPeriodDocument);
 };
 export const CreateModulDocument = gql`
     mutation CreateModul($input: ModulInput!) {
