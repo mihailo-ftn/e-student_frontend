@@ -18,10 +18,13 @@ import { submitForm } from "../../utils/submitForm";
 
 const CreateSubject = ({}) => {
   const [, createSubject] = useCreatSubjectMutation();
-  const [{ data: profData }] = useGetAllProfessorsQuery();
+  const [{ data: profData, stale }] = useGetAllProfessorsQuery();
   const [{ data: modulData }] = useGetAllModulsQuery();
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
+
+  console.log(stale);
+  
 
   const professorOptions =
     profData && profData.getAllProfessors

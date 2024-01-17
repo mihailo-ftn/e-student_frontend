@@ -345,13 +345,13 @@ export type Student = {
 export type StudentInput = {
   birthDate: Scalars['DateTime'];
   brind: Scalars['String'];
-  classNumber: Scalars['Int'];
+  classID: Scalars['String'];
   email: Scalars['String'];
   firstName: Scalars['String'];
   jmbg: Scalars['String'];
   lastName: Scalars['String'];
   middleName: Scalars['String'];
-  moduleCode: Scalars['String'];
+  modulID: Scalars['String'];
 };
 
 export type Subject = {
@@ -401,12 +401,19 @@ export type CreateModulMutationVariables = Exact<{
 
 export type CreateModulMutation = { __typename?: 'Mutation', createModul: { __typename?: 'Modul', id: string, moduleName: string, moduleCode: string } };
 
+export type CreateProfessorMutationVariables = Exact<{
+  input: ProfessorInput;
+}>;
+
+
+export type CreateProfessorMutation = { __typename?: 'Mutation', createProfessor: { __typename?: 'Professor', firstName: string, lastName: string, email: string, jmbg: string } };
+
 export type CreateStudentMutationVariables = Exact<{
   input: StudentInput;
 }>;
 
 
-export type CreateStudentMutation = { __typename?: 'Mutation', createStudent: { __typename?: 'Student', id: string } };
+export type CreateStudentMutation = { __typename?: 'Mutation', createStudent: { __typename?: 'Student', firstName: string, lastName: string, birthDate: any, brind: string, middleName: string, jmbg: string, modulID: string, classID: string } };
 
 export type CreatSubjectMutationVariables = Exact<{
   input: SubjectInput;
@@ -494,6 +501,11 @@ export type UpdatePasswordMutationVariables = Exact<{
 
 export type UpdatePasswordMutation = { __typename?: 'Mutation', updatePassword: boolean };
 
+export type GetClassesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetClassesQuery = { __typename?: 'Query', getClasses: Array<{ __typename?: 'Class', id: string, classLabel: number }> };
+
 export type GetAllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -514,7 +526,7 @@ export type ExamRecordFromIdQuery = { __typename?: 'Query', ExamRecordFromId: { 
 export type ExamsFromCurrentExamPeriodQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ExamsFromCurrentExamPeriodQuery = { __typename?: 'Query', examsFromCurrentExamPeriod: Array<{ __typename?: 'Exam', date: any, subject: { __typename?: 'Subject', id: string, subjectName: string, espp: number, type: SubjectType }, examRecord?: { __typename?: 'ExamRecord', student?: { __typename?: 'Student', firstName: string, lastName: string, brind: string } | null | undefined } | null | undefined }> };
+export type ExamsFromCurrentExamPeriodQuery = { __typename?: 'Query', examsFromCurrentExamPeriod: Array<{ __typename?: 'Exam', date: any, subject: { __typename?: 'Subject', id: string, subjectName: string, espp: number, type: SubjectType, modul: { __typename?: 'Modul', moduleCode: string } }, examRecord?: { __typename?: 'ExamRecord', student?: { __typename?: 'Student', firstName: string, lastName: string, brind: string } | null | undefined } | null | undefined }> };
 
 export type GetAllModulsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -635,10 +647,31 @@ export const CreateModulDocument = gql`
 export function useCreateModulMutation() {
   return Urql.useMutation<CreateModulMutation, CreateModulMutationVariables>(CreateModulDocument);
 };
+export const CreateProfessorDocument = gql`
+    mutation CreateProfessor($input: ProfessorInput!) {
+  createProfessor(input: $input) {
+    firstName
+    lastName
+    email
+    jmbg
+  }
+}
+    `;
+
+export function useCreateProfessorMutation() {
+  return Urql.useMutation<CreateProfessorMutation, CreateProfessorMutationVariables>(CreateProfessorDocument);
+};
 export const CreateStudentDocument = gql`
     mutation CreateStudent($input: StudentInput!) {
   createStudent(input: $input) {
-    id
+    firstName
+    lastName
+    birthDate
+    brind
+    middleName
+    jmbg
+    modulID
+    classID
   }
 }
     `;
@@ -779,6 +812,18 @@ export const UpdatePasswordDocument = gql`
 export function useUpdatePasswordMutation() {
   return Urql.useMutation<UpdatePasswordMutation, UpdatePasswordMutationVariables>(UpdatePasswordDocument);
 };
+export const GetClassesDocument = gql`
+    query getClasses {
+  getClasses {
+    id
+    classLabel
+  }
+}
+    `;
+
+export function useGetClassesQuery(options: Omit<Urql.UseQueryArgs<GetClassesQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetClassesQuery>({ query: GetClassesDocument, ...options });
+};
 export const GetAllPostsDocument = gql`
     query getAllPosts {
   getAllPosts {
@@ -847,6 +892,9 @@ export const ExamsFromCurrentExamPeriodDocument = gql`
       subjectName
       espp
       type
+      modul {
+        moduleCode
+      }
     }
     examRecord {
       student {

@@ -14,7 +14,7 @@ const Home = () => {
         <div className="w-full h-screen bg-opacity-50 bg-black flex justify-center items-center">
           <div className="mx-4 text-center text-white">
             <h1 className="flex items-center justify-center font-bold text-4xl mb-4">
-              Добродошли на студентску платформу Универзитета одбране
+              Добродошли на студентску платформу Универзитета у Крагујевцу
             </h1>
             <h2 className="flex items-center justify-center font-bold text-3xl mb-12">Изаберите начин пријављивања</h2>
             <div className="flex justify-center">

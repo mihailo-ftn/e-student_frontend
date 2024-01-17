@@ -202,9 +202,9 @@ export const NavigationBar = () => {
                     Насловна
                   </a>
                 </Link>
-                <Link href="http://www.uo.mod.gov.rs/" replace={true}>
+                <Link href="https://www.kg.ac.rs/" replace={true}>
                   <a
-                    href="http://www.uo.mod.gov.rs/"
+                    href="https://www.kg.ac.rs/"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Универзитет

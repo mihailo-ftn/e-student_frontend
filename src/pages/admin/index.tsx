@@ -53,7 +53,14 @@ const Home = ({}) => {
             </button>
           </div>
           <div>
-            <button className="bg-gray-800 w-72 text-white rounded-md p-3">Направи професора</button>
+            <button
+              className="bg-gray-800 w-72 text-white rounded-md p-3"
+              onClick={() => {
+                router.push("/admin/create-professor");
+              }}
+            >
+              Направи професора
+            </button>
           </div>
           <div>
             <button

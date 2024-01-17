@@ -48,24 +48,12 @@ const StudentsWhoSinged = ({}) => {
                 {data?.studentsWhoSingedExam.map((s) => {
                   return (
                     <tr className="px-20 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <th
-                        scope="row"
-                        className="px-28 py-4 whitespace-nowrap text-sm text-gray-500"
-                      >
+                      <th scope="row" className="px-28 py-4 whitespace-nowrap text-sm text-gray-500">
                         {s.student?.firstName} {s.student?.lastName}
                       </th>
-                      <NextLink
-                        href="/professor/sing_exam_results/[id]"
-                        as={`/professor/sing_exam_results/${s.id}`}
-                      >
-                        <th
-                          scope="row"
-                          className="px-8 py-4 whitespace-nowrap text-sm text-gray-500"
-                        >
-                          <button
-                            className="bg-gray-500 rounded-lg p-2 text-white"
-                            onClick={async () => {}}
-                          >
+                      <NextLink href="/professor/sing_exam_results/[id]" as={`/professor/sing_exam_results/${s.id}`}>
+                        <th scope="row" className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <button className="bg-gray-500 rounded-lg p-2 text-white" onClick={async () => {}}>
                             Унесите резултате испита
                           </button>
                         </th>
@@ -78,9 +66,7 @@ const StudentsWhoSinged = ({}) => {
           </div>
         </div>
       ) : (
-        <h1 className="text-center text-3xl font-bold text-gray-600 mt-4">
-          Niko nije prijavio ispit
-        </h1>
+        <h1 className="text-center text-3xl font-bold text-gray-600 mt-4">Нико није пријавио испит.</h1>
       )}
     </>
   );

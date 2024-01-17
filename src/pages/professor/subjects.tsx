@@ -27,6 +27,12 @@ const Subjects = () => {
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
+                Модул
+              </th>
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
                 Тип пријаве
               </th>
               <th
@@ -47,6 +53,9 @@ const Subjects = () => {
                 <tr className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
                   <th scope="row" className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
                     {s.subjectName}
+                  </th>
+                  <th scope="row" className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {s.modul.moduleCode}
                   </th>
                   <td className="px-8 py-4">{s.type === "REQUIRED" ? "OBAVEZNI" : "IZBORNI"}</td>
                   <td className="px-8 py-4">{s.espp}</td>

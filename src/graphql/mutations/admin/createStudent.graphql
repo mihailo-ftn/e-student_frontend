@@ -1,5 +1,12 @@
-mutation CreateStudent($input:StudentInput!){
-  createStudent(input:$input){
-    id
+mutation CreateStudent($input: StudentInput!) {
+  createStudent(input: $input) {
+    firstName
+    lastName
+    birthDate
+    brind
+    middleName
+    jmbg
+    modulID
+    classID
   }
 }

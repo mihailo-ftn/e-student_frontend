@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import { withUrqlClient } from "next-urql";
 import router from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { AdminNavigationBar } from "../../components/admin/NavigationBar";
 import { InputField } from "../../components/InputField";
 import {
@@ -13,11 +13,16 @@ import {
 } from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import DropdownField from "../../components/DropdownField";
+import { submitForm } from "../../utils/submitForm";
+import SuccessModal from "../../components/SuccessModal";
+import ErrorModal from "../../components/ErrorModal";
 
 const CreateExaminationPeriod = ({}) => {
   const [, createExaminationPeriod] = useCreateExaminationPeriodMutation();
   const [{ data: profData }] = useGetAllProfessorsQuery();
   const [{ data: modulData }] = useGetAllModulsQuery();
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const professorOptions =
     profData && profData.getAllProfessors
@@ -32,6 +37,12 @@ const CreateExaminationPeriod = ({}) => {
   return (
     <>
       <AdminNavigationBar />
+      <SuccessModal isOpen={showSuccess} onClose={() => router.back()}>
+        <h2>Успешно креирано.</h2>
+      </SuccessModal>
+      <ErrorModal isOpen={!!error} onClose={() => setError("")}>
+        <h2>{error}</h2>
+      </ErrorModal>
       <Formik
         initialValues={{
           name: "",
@@ -39,21 +50,17 @@ const CreateExaminationPeriod = ({}) => {
           beginningDate: "",
           modulID: "",
         }}
-        onSubmit={async (values) => {
-          console.log(values);
-          const response = await createExaminationPeriod({
-            input: values,
-          });
-          if (response.error?.message.includes("ER201")) {
-            console.log("Module you entered does nost exist");
-          } else if (response.error?.message.includes("ER100")) {
-            console.log("Check input values");
-          } else if (response.error?.message.includes("ER301")) {
-            console.log("Class you entered does nost exist");
-          } else if (response.data) {
-            console.log("Success");
-          }
-        }}
+        onSubmit={async (values) =>
+          submitForm(
+            values,
+            () =>
+              createExaminationPeriod({
+                input: values,
+              }),
+            setError,
+            setShowSuccess
+          )
+        }
       >
         {({ isSubmitting }) => (
           <Form className="mt-3 space-y-6" action="#" method="POST">
@@ -80,6 +87,30 @@ const CreateExaminationPeriod = ({}) => {
                           модул
                         </label>
                         <DropdownField name="modulID" options={modulOptions} placeholder="Изабери модул" />
+                      </div>
+                      <div className="w-full md:w-full px-3 mb-6">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                          Датум почетка
+                        </label>
+                        <InputField
+                          className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
+                          id="beginningDate"
+                          name="beginningDate"
+                          type="date"
+                          placeholder="Унеси датум почетка"
+                        />
+                      </div>
+                      <div className="w-full md:w-full px-3 mb-6">
+                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                          Датум завршетка
+                        </label>
+                        <InputField
+                          className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
+                          id="endDate"
+                          name="endDate"
+                          type="date"
+                          placeholder="Унеси датум завршетка"
+                        />
                       </div>
                       <div className="w-full md:w-full px-3 mb-6 ">
                         <button

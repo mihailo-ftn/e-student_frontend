@@ -1,14 +1,17 @@
-query ExamsFromCurrentExamPeriod{
-  examsFromCurrentExamPeriod{
+query ExamsFromCurrentExamPeriod {
+  examsFromCurrentExamPeriod {
     date
-    subject{
+    subject {
       id
       subjectName
       espp
       type
+      modul {
+        moduleCode
+      }
     }
-    examRecord{
-      student{
+    examRecord {
+      student {
         firstName
         lastName
         brind

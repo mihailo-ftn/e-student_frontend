@@ -10,12 +10,12 @@ const RegisteredExams = ({}) => {
   const [{ data, error, fetching }] = useExamsFromCurrentExamPeriodQuery();
   const router = useRouter();
 
+  console.log(data);
+
   return (
     <>
       <ProfessorNavigationBar />
-      <h1 className="text-center text-2xl font-bold text-gray-600 mt-4">
-          Ваши испити у текућем року
-      </h1>
+      <h1 className="text-center text-2xl font-bold text-gray-600 mt-4">Ваши испити у текућем року</h1>
       {data && data.examsFromCurrentExamPeriod.length != 0 ? (
         <div className="flex flex-col mt-10 px-20">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -29,6 +29,12 @@ const RegisteredExams = ({}) => {
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Назив предмета
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Модул
                       </th>
                       <th
                         scope="col"
@@ -60,40 +66,35 @@ const RegisteredExams = ({}) => {
                         return (
                           <tr>
                             <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="flex items-center">
-                                {e.subject.subjectName}
-                              </div>
+                              <div className="flex items-center">{e.subject.subjectName}</div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="flex items-center">{e.subject.modul.moduleCode}</div>
                             </td>
                             <td className="px-8 py-4 whitespace-nowrap">
                               <div className="text-sm text-gray-900">
                                 {e.subject.type === "REQUIRED" ? "ОБАВЕЗНИ" : "ИЗБОРНИ"}
                               </div>
                             </td>
-                            <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
-                              {e.subject.espp}
-                            </td>
+                            <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{e.subject.espp}</td>
                             <td className="px-10 py-4 whitespace-nowrap text-sm text-gray-500">
                               {e.date.split("T")[0]}
                             </td>
                             <td className="px-8 py-4 whitespace-nowrap text-sm text-white">
-                             <NextLink href="/professor/students_who_singed_exam/[id]" as={`/professor/students_who_singed_exam/${e.subject.id}`}>
-                              <button
-                                className="bg-gray-500 rounded-lg p-2"
-                                onClick={async () => {
-                                  
-                                }}
+                              <NextLink
+                                href="/professor/students_who_singed_exam/[id]"
+                                as={`/professor/students_who_singed_exam/${e.subject.id}`}
                               >
-                                Унесите резултате испита 
-                              </button>
+                                <button className="bg-gray-500 rounded-lg p-2" onClick={async () => {}}>
+                                  Унесите резултате испита
+                                </button>
                               </NextLink>
                             </td>
                           </tr>
                         );
                       })
                     ) : (
-                      <div className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
-                        
-                      </div>
+                      <div className="px-8 py-4 whitespace-nowrap text-sm text-gray-500"></div>
                     )}
                   </tbody>
                 </table>

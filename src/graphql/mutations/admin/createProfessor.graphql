@@ -1,0 +1,8 @@
+mutation CreateProfessor($input: ProfessorInput!) {
+  createProfessor(input: $input) {
+    firstName
+    lastName
+    email
+    jmbg
+  }
+}
