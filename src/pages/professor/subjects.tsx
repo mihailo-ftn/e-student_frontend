@@ -8,7 +8,6 @@ import { createUrqlClient } from "../../utils/createUrqlClient";
 const Subjects = () => {
   const [{ data, error, fetching }] = useProfessorSubjectsQuery();
 
-  console.log(data);
   return (
     <>
       <ProfessorNavigationBar />
@@ -57,7 +56,7 @@ const Subjects = () => {
                   <th scope="row" className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
                     {s.modul.moduleCode}
                   </th>
-                  <td className="px-8 py-4">{s.type === "REQUIRED" ? "OBAVEZNI" : "IZBORNI"}</td>
+                  <td className="px-8 py-4">{s.type === "REQUIRED" ? "ОБАВЕЗАН" : "ИЗБОРНИ"}</td>
                   <td className="px-8 py-4">{s.espp}</td>
                   <Link href="/professor/create/[id]" as={`/professor/create/${s.id}`}>
                     <td className="py-4">

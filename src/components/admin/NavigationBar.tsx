@@ -28,9 +28,11 @@ export const AdminNavigationBar = () => {
           >
             <span className="sr-only">Open user menu</span>
             <img
-              className="h-8 w-8 rounded-full"
+              className="h-12 w-12 rounded-full"
               src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg"
               alt=""
+              width={100}
+              height={100}
             />
           </button>
         </div>
@@ -103,7 +105,7 @@ export const AdminNavigationBar = () => {
               }}
             >
               <div className="flex cursor-pointer">
-                <Image src={grbUniverziteta} alt="Workflow" width={55} height={50} />
+                <Image src={grbUniverziteta} alt="Workflow" width={60} height={50} />
               </div>
               <h1 className="text-white text-lg text cursor-pointer mx-2">ФТН Чачак</h1>
             </div>

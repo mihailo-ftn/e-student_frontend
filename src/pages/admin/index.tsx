@@ -13,14 +13,9 @@ const Home = ({}) => {
       <div className="flex justify-center items-center">
         <div className="grid content-center grid-cols-1 gap-4 mt-4 p-5">
           <div>
-            <button
-              onClick={() => {
-                router.push("/admin/create-student");
-              }}
-              className="bg-gray-800 w-72 text-white rounded-md p-3"
-            >
+            <a href="/admin/create-student" className="bg-gray-800 w-72 text-white rounded-md p-3 block text-center">
               Направи студента
-            </button>
+            </a>
           </div>
           <div>
             <button
@@ -29,7 +24,7 @@ const Home = ({}) => {
                 router.push("/admin/create-class");
               }}
             >
-              Направи класу
+              Додај генерацију
             </button>
           </div>
           <div>
@@ -43,14 +38,9 @@ const Home = ({}) => {
             </button>
           </div>
           <div>
-            <button
-              className="bg-gray-800 w-72 text-white rounded-md p-3"
-              onClick={() => {
-                router.push("/admin/create-subject");
-              }}
-            >
+            <a href="/admin/create-subject" className="bg-gray-800 w-72 text-white rounded-md p-3 block text-center">
               Направи предмет
-            </button>
+            </a>
           </div>
           <div>
             <button
@@ -63,14 +53,12 @@ const Home = ({}) => {
             </button>
           </div>
           <div>
-            <button
-              className="bg-gray-800 w-72 text-white rounded-md p-3"
-              onClick={() => {
-                router.push("/admin/create-examination-period");
-              }}
+            <a
+              href="/admin/create-examination-period"
+              className="bg-gray-800 w-72 text-white rounded-md p-3 block text-center"
             >
               Направи испитни рок
-            </button>
+            </a>
           </div>
         </div>
       </div>

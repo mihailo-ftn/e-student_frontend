@@ -24,7 +24,7 @@ const Custom404 = () => {
           </button>
         </div>
         <div className="max-w-lg -mt-10 h-32">
-          <Image src={grbUniverziteta} alt="Workflow" height={140} width={150} />
+          <Image src={grbUniverziteta} alt="Workflow" height={120} width={150} />
         </div>
       </div>
     </div>

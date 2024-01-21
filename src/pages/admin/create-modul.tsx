@@ -51,7 +51,7 @@ const CreateModul = ({}) => {
               <div className="h-full">
                 <div className="container mx-auto">
                   <div className="inputs w-full max-w-2xl p-6 mx-auto">
-                    <h2 className="text-2xl text-gray-900">Додај студента</h2>
+                    <h2 className="text-2xl text-gray-900">Додај модул</h2>
                     <div className="mt-2 border-t border-gray-400 pt-4">
                       <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-full px-3 mb-6">

@@ -80,37 +80,32 @@ export const NextExaminationPeriodTable = () => {
                           return (
                             <tr className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
                               <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <div className="flex items-center">
-                                  {e.subject.subjectName}
-                                </div>
+                                <div className="flex items-center">{e.subject.subjectName}</div>
                               </td>
                               <td className="px-8 py-4 whitespace-nowrap">
                                 <div className="text-sm text-gray-900">
                                   {e.subject.type === "REQUIRED" ? "OBAVEZNI" : "IZBORNI"}
                                 </div>
                               </td>
-                              <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {e.subject.espp}
-                              </td>
+                              <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{e.subject.espp}</td>
                               <td className="px-10 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {e.date.split("T")[0]}
                               </td>
                               <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {e.subject.professor.firstName}{" "}
-                                {e.subject.professor.lastName}
+                                {e.subject.professor.firstName} {e.subject.professor.lastName}
                               </td>
                               <td className="px-8 py-4 whitespace-nowrap text-sm text-white">
-                                {buttonDisplay ? (
+                                {!e.examRecord ? (
                                   <button
                                     className="bg-gray-500 rounded-lg p-2"
                                     onClick={async () => {
-                                      try{
-                                      await registerExam({
-                                        examID: e.id as any,
-                                      });
-                                    }finally{
-                                      window.location.reload()
-                                    }
+                                      try {
+                                        await registerExam({
+                                          examID: e.id as any,
+                                        });
+                                      } finally {
+                                        window.location.reload();
+                                      }
                                     }}
                                   >
                                     Пријави испит

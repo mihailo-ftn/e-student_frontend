@@ -12,9 +12,9 @@ export const NavigationBar = () => {
   const [{ data, error, fetching }] = useMeQuery();
   const [, logout] = useLogoutMutation();
   const router = useRouter();
-  
+
   let body = null;
-  
+
   if (data?.me) {
     body = (
       <>
@@ -35,8 +35,8 @@ export const NavigationBar = () => {
             >
               <span className="sr-only">Open user menu</span>
               <img
-                className="h-8 w-8 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                className="h-12 w-12 rounded-full"
+                src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg"
                 alt=""
               />
             </button>
@@ -53,7 +53,7 @@ export const NavigationBar = () => {
                 className="block px-4 py-2 text-sm text-gray-700"
                 role="menuitem"
                 id="user-menu-item-0"
-                onClick={()=>{
+                onClick={() => {
                   router.push("/student/profile");
                 }}
               >
@@ -76,9 +76,9 @@ export const NavigationBar = () => {
                 role="menuitem"
                 id="user-menu-item-2"
                 onClick={async () => {
-                  const result  = await logout();
-                  if(result){
-                    router.replace('/student/login')
+                  const result = await logout();
+                  if (result) {
+                    router.replace("/");
                   }
                 }}
               >
@@ -90,7 +90,7 @@ export const NavigationBar = () => {
       </>
     );
   }
-  
+
   return (
     <nav className="bg-gray-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -136,7 +136,7 @@ export const NavigationBar = () => {
               }}
             >
               <div className="flex cursor-pointer">
-                <Image src={grbUniverziteta} alt="Workflow" width={65} height={50} />
+                <Image src={grbUniverziteta} alt="Workflow" width={60} height={50} />
               </div>
             </div>
             <div className="hidden sm:block sm:ml-6 mt-2">

@@ -1,32 +1,47 @@
 import { Formik, Form } from "formik";
 import { withUrqlClient } from "next-urql";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { AdminNavigationBar } from "../../components/admin/NavigationBar";
 import { InputField } from "../../components/InputField";
-import { useCreateStudentMutation, useGetAllModulsQuery, useGetClassesQuery } from "../../generated/graphql";
+import {
+  GetAllModulsDocument,
+  GetClassesDocument,
+  useCreateStudentMutation,
+  useGetAllModulsQuery,
+  useGetClassesQuery,
+} from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import SuccessModal from "../../components/SuccessModal";
 import { submitForm } from "../../utils/submitForm";
 import ErrorModal from "../../components/ErrorModal";
 import DropdownField from "../../components/DropdownField";
+import { useQuery } from "urql";
 
 const CreateStudent = ({}) => {
   const [, createStudent] = useCreateStudentMutation();
   const router = useRouter();
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
+  // window.location.reload();
+
   const [{ data: modulData }] = useGetAllModulsQuery();
   const [{ data: classData }] = useGetClassesQuery();
 
   const modulOptions =
     modulData && modulData.getAllModuls
-      ? modulData.getAllModuls.map((modul) => ({ id: modul.id, label: modul.moduleCode }))
+      ? modulData.getAllModuls.map((modul: { id: string; moduleCode: string }) => ({
+          id: modul.id,
+          label: modul.moduleCode,
+        }))
       : [];
 
   const classOptions =
     classData && classData.getClasses
-      ? classData.getClasses.map((clas) => ({ id: clas.id, label: clas.classLabel.toString() }))
+      ? classData.getClasses.map((clas: { id: string; classLabel: number }) => ({
+          id: clas.id,
+          label: clas.classLabel.toString(),
+        }))
       : [];
 
   return (
@@ -143,9 +158,9 @@ const CreateStudent = ({}) => {
                       </div>
                       <div className="w-full md:w-full px-3 mb-6 ">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                          Класа
+                          Генерација
                         </label>
-                        <DropdownField name="classID" options={classOptions} placeholder="Изабери класу" />
+                        <DropdownField name="classID" options={classOptions} placeholder="Изабери генерацију" />
                       </div>
                       <div className="w-full md:w-full px-3 mb-6 ">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

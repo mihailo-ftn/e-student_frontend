@@ -45,12 +45,12 @@ const CreateClass = ({}) => {
             <div className="h-full">
               <div className="container mx-auto">
                 <div className="inputs w-full max-w-2xl p-6 mx-auto">
-                  <h2 className="text-2xl text-gray-900">Додај класу студената</h2>
+                  <h2 className="text-2xl text-gray-900">Додај генерацију студената</h2>
                   <div className="mt-2 border-t border-gray-400 pt-4">
                     <div className="flex flex-wrap -mx-3 mb-6">
                       <div className="w-full md:w-full px-3 mb-6">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                          Ознака класе
+                          Генерација
                         </label>
                         <InputField
                           className="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none  focus:border-gray-500"
