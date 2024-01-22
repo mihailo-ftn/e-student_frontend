@@ -15,7 +15,7 @@ export const createUrqlClient = (ssrExchange: any, ctx: any) => {
     cookie = ctx?.req?.headers?.cookie;
   }
   return {
-    url: "http://localhost:4000/graphql",
+    url: "http://localhost:4001/graphql",
     fetchOptions: {
       credentials: "include" as const,
       headers: cookie
@@ -23,7 +23,6 @@ export const createUrqlClient = (ssrExchange: any, ctx: any) => {
             cookie,
           }
         : undefined,
-        
     },
     exchanges: [
       cacheExchange({
@@ -38,24 +37,19 @@ export const createUrqlClient = (ssrExchange: any, ctx: any) => {
                 cache,
                 { query: MeDocument },
                 _result,
-                () => ({ me : null } as any)
+                () => ({ me: null } as any)
               );
             },
             login: (_result, args, cache, info) => {
-              betterUpdateQuery<LoginMutation, MeQuery>(
-                cache,
-                { query: MeDocument },
-                _result,
-                (result : any, query) => {
-                  if (!result.login) {
-                    return query;
-                  } else {
-                    return {
-                      me: result.login,
-                    };
-                  }
+              betterUpdateQuery<LoginMutation, MeQuery>(cache, { query: MeDocument }, _result, (result: any, query) => {
+                if (!result.login) {
+                  return query;
+                } else {
+                  return {
+                    me: result.login,
+                  };
                 }
-              );
+              });
             },
           },
         },

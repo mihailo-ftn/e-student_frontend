@@ -14,7 +14,7 @@ const Home = ({}) => {
         <div className="grid content-center grid-cols-1 gap-4 mt-4 p-5">
           <div>
             <a href="/admin/create-student" className="bg-gray-800 w-72 text-white rounded-md p-3 block text-center">
-              Направи студента
+              Додај студента
             </a>
           </div>
           <div>
@@ -34,12 +34,12 @@ const Home = ({}) => {
                 router.push("/admin/create-modul");
               }}
             >
-              Направи модул
+              Додај модул
             </button>
           </div>
           <div>
             <a href="/admin/create-subject" className="bg-gray-800 w-72 text-white rounded-md p-3 block text-center">
-              Направи предмет
+              Додај предмет
             </a>
           </div>
           <div>
@@ -49,7 +49,7 @@ const Home = ({}) => {
                 router.push("/admin/create-professor");
               }}
             >
-              Направи професора
+              Додај професора
             </button>
           </div>
           <div>
@@ -57,7 +57,7 @@ const Home = ({}) => {
               href="/admin/create-examination-period"
               className="bg-gray-800 w-72 text-white rounded-md p-3 block text-center"
             >
-              Направи испитни рок
+              Додај испитни рок
             </a>
           </div>
         </div>
